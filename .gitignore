@@ -1,0 +1,7 @@
+# pyc files
+*.pyc
+
+# eclipse files
+.project
+.pydevproject
+.settings/
