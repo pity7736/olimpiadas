@@ -19,8 +19,8 @@ class Category(NameModel):
 
 class Task(NameModel):
     statuses = TaskStatus
-    owner = models.ForeignKey(to='accounts.User', verbose_name='Dueño')
-    categoty = models.ForeignKey(to=Category, verbose_name='Categoría')
+    owner = models.ForeignKey(to='accounts.User', verbose_name='Dueño', related_name='tasks')
+    categoty = models.ForeignKey(to=Category, verbose_name='Categoría', related_name='tasks')
     deadline = models.DateTimeField(verbose_name='Fecha límite', null=True, blank=True)
     status = models.CharField(
         verbose_name='Estado',
