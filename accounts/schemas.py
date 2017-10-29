@@ -10,3 +10,7 @@ class UserNode(DjangoObjectType):
         model = User
         exclude_fields = ('password',)
         interfaces = (relay.Node,)
+
+    @classmethod
+    def get_node(cls, info, user_id):
+        return User.objects.get_user_graph_or_none(info, id=user_id)
