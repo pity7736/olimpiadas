@@ -1,14 +1,10 @@
-from graphene.test import Client
 from pytest import mark
 
-from api.schemas import schema
-from tests.factories.accounts_factories import UserFactory
+from tests.factories import UserFactory
 
 
 @mark.django_db
-def test_user():
-    client = Client(schema=schema)
-    user = UserFactory.create()
+def test_user(graph_client):
     query = '''
         query($id: Int!) {
             user(id: $id) {
@@ -17,7 +13,8 @@ def test_user():
             }
         }
     '''
-    result = client.execute(query, variable_values={'id': user.id})
+    user = UserFactory.create()
+    result = graph_client.execute(query, variable_values={'id': user.id})
     assert result == {
         'data': {
             'user': {
