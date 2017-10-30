@@ -9,6 +9,7 @@ from tasks.schemas import CategoryNode, TaskNode
 class GlobalQuery(ObjectType):
     category = relay.Node.Field(CategoryNode)
     task = relay.Node.Field(TaskNode)
+    tasks = DjangoFilterConnectionField(TaskNode, extra_filter_meta={'exclude': ()})
     user_relay = relay.Node.Field(UserNode)
     user = Field(UserNode, id=Int(required=True))
     users = DjangoFilterConnectionField(UserNode, extra_filter_meta={'exclude': 'password'})

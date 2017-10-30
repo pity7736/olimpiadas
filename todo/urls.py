@@ -26,10 +26,8 @@ from django.db import connection
 class View(GraphQLView):
 
     def dispatch(self, request, *args, **kwargs):
-        print('hola bview')
-        print(connection.queries)
-        print(len(connection.queries))
         result = GraphQLView.dispatch(self, request, *args, **kwargs)
+        print(end='\n\n\n\n')
         print(connection.queries, 'queries')
         print(len(connection.queries))
         return result

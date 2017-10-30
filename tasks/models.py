@@ -28,7 +28,7 @@ class Task(NameModel):
         verbose_name='Estado',
         max_length=50,
         choices=statuses.choices(),
-        default=statuses.CREATED,
+        default=statuses.CREATED.value,
         db_index=True,
     )
     objects = TaskManager()

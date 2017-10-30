@@ -13,6 +13,7 @@ class CategoryNode(DjangoObjectType):
 
 class TaskNode(DjangoObjectType):
     test = String()
+    status = String()
 
     class Meta:
         interfaces = (relay.Node,)
