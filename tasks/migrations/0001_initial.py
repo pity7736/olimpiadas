@@ -36,7 +36,7 @@ class Migration(migrations.Migration):
                 ('description', models.TextField(verbose_name='Descripción')),
                 ('deadline', models.DateTimeField(blank=True, null=True, verbose_name='Fecha límite')),
                 ('status', models.CharField(choices=[('created', 'creado'), ('in_progess', 'en progreso'), ('completed', 'completada')], db_index=True, default=tasks.choices.TaskStatus('creado'), max_length=50, verbose_name='Estado')),
-                ('categoty', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='tasks.Category', verbose_name='Categoría')),
+                ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='tasks.Category', verbose_name='Categoría')),
                 ('owner', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='Dueño')),
             ],
             options={

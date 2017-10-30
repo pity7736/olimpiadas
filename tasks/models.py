@@ -1,5 +1,7 @@
 from django.db import models
+
 from tasks.choices import TaskStatus
+from tasks.managers import TaskManager
 
 
 class NameModel(models.Model):
@@ -20,7 +22,7 @@ class Category(NameModel):
 class Task(NameModel):
     statuses = TaskStatus
     owner = models.ForeignKey(to='accounts.User', verbose_name='Dueño', related_name='tasks')
-    categoty = models.ForeignKey(to=Category, verbose_name='Categoría', related_name='tasks')
+    category = models.ForeignKey(to=Category, verbose_name='Categoría', related_name='tasks')
     deadline = models.DateTimeField(verbose_name='Fecha límite', null=True, blank=True)
     status = models.CharField(
         verbose_name='Estado',
@@ -29,3 +31,4 @@ class Task(NameModel):
         default=statuses.CREATED,
         db_index=True,
     )
+    objects = TaskManager()

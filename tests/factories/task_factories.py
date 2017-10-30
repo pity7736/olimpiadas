@@ -1,4 +1,6 @@
-from factory import DjangoModelFactory, Faker, Sequence
+import datetime
+
+from factory import DjangoModelFactory, Faker, Sequence, SubFactory, LazyFunction
 
 
 class CategoryFactory(DjangoModelFactory):
@@ -7,3 +9,14 @@ class CategoryFactory(DjangoModelFactory):
 
     class Meta:
         model = 'tasks.Category'
+
+
+class TaskFactory(DjangoModelFactory):
+    name = Sequence(lambda n: f'task{n}')
+    description = Faker('text')
+    owner = SubFactory('tests.factories.accounts_factories.UserFactory')
+    category = SubFactory(CategoryFactory)
+    deadline = LazyFunction(datetime.datetime.now)
+
+    class Meta:
+        model = 'tasks.Task'
