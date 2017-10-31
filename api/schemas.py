@@ -1,4 +1,4 @@
-from graphene import ObjectType, Schema, relay, Field, Int
+from graphene import ObjectType, relay, Field, Int
 from graphene_django.filter import DjangoFilterConnectionField
 
 from accounts.models import User
@@ -15,6 +15,3 @@ class GlobalQuery(ObjectType):
 
     def resolve_user(self, info, id):
         return User.objects.get_user_graph_or_none(info, id=id)
-
-
-schema = Schema(query=GlobalQuery)

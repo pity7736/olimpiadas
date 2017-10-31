@@ -35,9 +35,9 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(db_index=True, max_length=100, verbose_name='Nombre')),
                 ('description', models.TextField(verbose_name='Descripción')),
                 ('deadline', models.DateTimeField(blank=True, null=True, verbose_name='Fecha límite')),
-                ('status', models.CharField(choices=[('created', 'creado'), ('in_progess', 'en progreso'), ('completed', 'completada')], db_index=True, default=tasks.choices.TaskStatus('creado'), max_length=50, verbose_name='Estado')),
-                ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='tasks.Category', verbose_name='Categoría')),
-                ('owner', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='Dueño')),
+                ('status', models.CharField(choices=[('CREATED', 'creado'), ('IN_PROGESS', 'en progreso'), ('COMPLETED', 'completada')], db_index=True, default='CREATED', max_length=50, verbose_name='Estado'),),
+                ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='tasks.Category', verbose_name='Categoría', related_name='tasks')),
+                ('owner', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='Dueño', related_name='tasks')),
             ],
             options={
                 'abstract': False,

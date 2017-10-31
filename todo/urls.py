@@ -18,7 +18,7 @@ from django.contrib import admin
 
 from graphene_django.views import GraphQLView
 
-from api.schemas import schema
+from api import schema
 
 from django.db import connection
 
